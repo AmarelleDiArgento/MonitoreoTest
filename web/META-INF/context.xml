@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/MonitoreoTest">
+<resource
+auth="container"
+
+name="Pool"
+username="Inventarios"
+password="Inventarios2016*"
+url="jdbc:sqlserver://10.50.1.145\Mercedes;databaseName=MonitoreoHtml"
+
+driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+type="javax.sql.DataSource"
+
+initialSize="0"
+maxActive="100"
+maxIdle="50"
+minIdle="25"
+removeAbandoned="true"
+removeAbandonedTimeout="55">
+    
+</resource>
+</Context>
