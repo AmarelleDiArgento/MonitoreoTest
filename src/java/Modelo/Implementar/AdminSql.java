@@ -30,7 +30,6 @@ import javax.sql.DataSource;
 public class AdminSql implements Administrador {
 
     private Connection cn = null;
-    private DataSource pool = null;
 
     public AdminSql() throws SQLException {
         String url = "jdbc:sqlserver://10.50.1.145\\Mercedes;databaseName=MonitoreoHtml";
@@ -53,16 +52,15 @@ public class AdminSql implements Administrador {
     }
 
     public AdminSql(DataSource ds) throws SQLException {
-        this.pool = ds;
-        this.cn = pool.getConnection();
+        this.cn = ds.getConnection();
 
     }
 
-    Causa cau=null;
-    
+    Causa cau = null;
+
     @Override
     public Causa getCausa() {
-        if (cau==null){
+        if (cau == null) {
             cau = new CausaImp(cn);
         }
         return cau;

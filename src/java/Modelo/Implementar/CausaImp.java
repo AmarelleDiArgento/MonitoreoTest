@@ -9,6 +9,8 @@ import Modelo.Interfaz.Causa;
 import Modelo.Tabs.tbCausa;
 import Servicios.Mensajes.Mensajero;
 import Servicios.Mensajes.Msj;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -172,6 +174,23 @@ public class CausaImp extends Mensajero implements Causa {
         }
         return cl;
 
+    }
+
+    @Override
+    public JsonObject jFile(List<tbCausa> lo) {
+        JsonObject cJ = new JsonObject();
+        JsonArray caJ = new JsonArray();
+
+        for (tbCausa c : lo) {
+            JsonObject item = new JsonObject();
+
+            item.addProperty("id", c.getId_causa());
+            item.addProperty("codigo", c.getCodigo_causa());
+            item.addProperty("nombre", c.getNombre_causa());
+            caJ.add(item);
+        }
+        cJ.add("causas", caJ);
+        return cJ;
     }
 
 }

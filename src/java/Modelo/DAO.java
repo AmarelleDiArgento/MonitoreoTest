@@ -6,6 +6,7 @@
 package Modelo;
 
 import Servicios.Mensajes.Msj;
+import com.google.gson.JsonObject;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,5 +27,7 @@ public interface DAO<R, O, K> {
     O one(K id);
 
     List<O> all();
+
+    JsonObject jFile(List<O> lo);
 
 }
