@@ -5,28 +5,45 @@
  */
 package Modelo.Tabs;
 
-import Modelo.Interfaz.Producto;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
+@Entity
+@Table(name = "Variedades")
 public class tbVariedad implements Serializable {
 
+    @Id
+    @Column(name = "id_variedad")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_variedad;
-    private Long id_producto;
-    private Producto producto;
-
+    @Column(name = "Codigo_varied")
     private String codigo_variedad;
+    @Column(name = "Nombre")
     private String nombre_variedad;
 
-    public tbVariedad(Long id_variedad, Long id_producto, Producto producto, String codigo_variedad, String nombre_variedad) {
-        this.id_variedad = id_variedad;
-        this.id_producto = id_producto;
-        this.producto = producto;
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_producto")
+    private tbProducto producto;
+
+    public tbVariedad() {
+    }
+
+    public tbVariedad(String codigo_variedad, String nombre_variedad, tbProducto producto) {
         this.codigo_variedad = codigo_variedad;
         this.nombre_variedad = nombre_variedad;
+        this.producto = producto;
     }
 
     /**
@@ -41,34 +58,6 @@ public class tbVariedad implements Serializable {
      */
     public void setId_variedad(Long id_variedad) {
         this.id_variedad = id_variedad;
-    }
-
-    /**
-     * @return the id_producto
-     */
-    public Long getId_producto() {
-        return id_producto;
-    }
-
-    /**
-     * @param id_producto the id_producto to set
-     */
-    public void setId_producto(Long id_producto) {
-        this.id_producto = id_producto;
-    }
-
-    /**
-     * @return the producto
-     */
-    public Producto getProducto() {
-        return producto;
-    }
-
-    /**
-     * @param producto the producto to set
-     */
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 
     /**
@@ -99,6 +88,23 @@ public class tbVariedad implements Serializable {
         this.nombre_variedad = nombre_variedad;
     }
 
+    /**
+     * @return the producto
+     */
+    public tbProducto getProducto() {
+        return producto;
+    }
 
+    /**
+     * @param producto the producto to set
+     */
+    public void setProducto(tbProducto producto) {
+        this.producto = producto;
+    }
+
+    @Override
+    public String toString() {
+        return "tbVariedad{" + "id_variedad=" + id_variedad + ", codigo_variedad=" + codigo_variedad + ", nombre_variedad=" + nombre_variedad + ", producto=" + producto + '}';
+    }
 
 }

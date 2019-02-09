@@ -6,23 +6,58 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
-public class tbParametroTipo implements  Serializable{
-    
-    private Long id_param_tipo;
-   private Long  id_tipo;
-   private int id_param;
-   private String validar;
+@Entity
+@Table(name = "Parametros_tipo")
+public class tbParametroTipo implements Serializable {
 
-    public tbParametroTipo(Long id_param_tipo, Long id_tipo, int id_param, String validar) {
+    @Id
+    @Column(name = "id_param_tipo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_param_tipo;
+    @Id
+    @Column(name = "id_tipo")
+    private Long id_tipo;
+    @Id
+    @Column(name = "id_param")
+    private int id_param;
+    @Column(name = "Validar")
+    private String validar;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_param")
+    private tbParametro parametro;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_tipo")
+    private tbTipo tipo;
+
+    public tbParametroTipo() {
+    }
+
+    public tbParametroTipo(Long id_param_tipo, Long id_tipo, int id_param, String validar, tbParametro parametro, tbTipo tipo) {
         this.id_param_tipo = id_param_tipo;
         this.id_tipo = id_tipo;
         this.id_param = id_param;
         this.validar = validar;
+        this.parametro = parametro;
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "tbParametroTipo{" + "id_param_tipo=" + getId_param_tipo() + ", id_tipo=" + getId_tipo() + ", id_param=" + getId_param() + ", validar=" + getValidar() + ", parametro=" + getParametro() + ", tipo=" + getTipo() + '}';
     }
 
     /**
@@ -81,10 +116,32 @@ public class tbParametroTipo implements  Serializable{
         this.validar = validar;
     }
 
-    @Override
-    public String toString() {
-        return "tbParametroTipo{" + "id_param_tipo=" + id_param_tipo + ", id_tipo=" + id_tipo + ", id_param=" + id_param + ", validar=" + validar + '}';
+    /**
+     * @return the parametro
+     */
+    public tbParametro getParametro() {
+        return parametro;
     }
-   
-    
+
+    /**
+     * @param parametro the parametro to set
+     */
+    public void setParametro(tbParametro parametro) {
+        this.parametro = parametro;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public tbTipo getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(tbTipo tipo) {
+        this.tipo = tipo;
+    }
+
 }

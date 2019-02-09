@@ -6,16 +6,32 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
-public class tbMonitor implements Serializable{
-    
+@Entity
+@Table(name = "Monitores")
+public class tbMonitor implements Serializable {
+
+    @Id
+    @Column(name = "Id_Monitor")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_monitor;
+    @Column(name = "Codigo_monitor")
     private String codigo_monitor;
+    @Column(name = "Nombre_monitor")
     private String nombre_monitor;
+
+    public tbMonitor() {
+    }
 
     public tbMonitor(Long id_monitor, String codigo_monitor, String nombre_monitor) {
         this.id_monitor = id_monitor;
@@ -69,7 +85,5 @@ public class tbMonitor implements Serializable{
     public String toString() {
         return "tbMonitor{" + "id_monitor=" + id_monitor + ", codigo_monitor=" + codigo_monitor + ", nombre_monitor=" + nombre_monitor + '}';
     }
-    
-    
-    
+
 }

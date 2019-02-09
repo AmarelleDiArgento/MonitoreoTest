@@ -10,7 +10,6 @@ import Modelo.Interfaz.Causa;
 import Modelo.Interfaz.DetParametro;
 import Modelo.Interfaz.Encabezado;
 import Modelo.Interfaz.Finca;
-import Modelo.Interfaz.Inf_Monitoreo;
 import Modelo.Interfaz.Monitor;
 import Modelo.Interfaz.Parametro;
 import Modelo.Interfaz.Postcosecha;
@@ -78,11 +77,6 @@ public class AdminSql implements Administrador {
 
     @Override
     public Finca getFinca() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Inf_Monitoreo getInf_Monitoreo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

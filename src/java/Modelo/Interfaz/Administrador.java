@@ -19,8 +19,6 @@ public interface Administrador {
 
     Finca getFinca();
 
-    Inf_Monitoreo getInf_Monitoreo();
-
     Monitor getMonitor();
 
     Parametro getParametro();

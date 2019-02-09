@@ -6,22 +6,35 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
+@Entity
+@Table(name = "Postcosechas")
 public class tbPostcosecha implements Serializable {
 
+    @Id
+    @Column(name = "id_posco")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_poscosecha;
-    private Long id_finca;
-
+    @Column(name = "codigo_posco")
     private String codigo_poscosecha;
+    @Column(name = "nombre_posco")
     private String nombre_poscosecha;
 
-    public tbPostcosecha(Long id_poscosecha, Long id_finca, String codigo_poscosecha, String nombre_poscosecha) {
+    public tbPostcosecha() {
+    }
+
+    public tbPostcosecha(Long id_poscosecha, String codigo_poscosecha, String nombre_poscosecha) {
         this.id_poscosecha = id_poscosecha;
-        this.id_finca = id_finca;
         this.codigo_poscosecha = codigo_poscosecha;
         this.nombre_poscosecha = nombre_poscosecha;
     }
@@ -38,20 +51,6 @@ public class tbPostcosecha implements Serializable {
      */
     public void setId_poscosecha(Long id_poscosecha) {
         this.id_poscosecha = id_poscosecha;
-    }
-
-    /**
-     * @return the id_poscosecha
-     */
-    public Long getId_finca() {
-        return id_finca;
-    }
-
-    /**
-     * @param id_finca the id_poscosecha to set
-     */
-    public void setId_finca(Long id_finca) {
-        this.id_finca = id_finca;
     }
 
     /**
@@ -84,7 +83,7 @@ public class tbPostcosecha implements Serializable {
 
     @Override
     public String toString() {
-        return "tbPoscosecha{" + "id_poscosecha=" + id_poscosecha + ", codigo_poscosecha=" + codigo_poscosecha + ", nombre_poscosecha=" + nombre_poscosecha + '}';
+        return "tbPostcosecha{" + "id_poscosecha=" + id_poscosecha + ", codigo_poscosecha=" + codigo_poscosecha + ", nombre_poscosecha=" + nombre_poscosecha + '}';
     }
 
 }

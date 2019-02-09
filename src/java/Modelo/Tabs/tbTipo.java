@@ -6,26 +6,57 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
-public class tbTipo implements Serializable{
-    private Long id_tipo;
-      private String Codigo_tipo;
-      private String Nombre_tipo;
-      private int id_producto;
-      private String Cantidad;
-      private String Causas;
+@Entity
+@Table(name = "tipos")
+public class tbTipo implements Serializable {
 
-    public tbTipo(Long id_tipo, String Codigo_tipo, String Nombre_tipo, int id_producto, String Cantidad, String Causas) {
+    @Id
+    @Column(name = "id_tipo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_tipo;
+    @Column(name = "Codigo_tipo")
+    private String Codigo_tipo;
+    @Column(name = "Nombre_tipo")
+    private String Nombre_tipo;
+    @Column(name = "id_producto")
+    private int id_producto;
+    @Column(name = "Cantidad")
+    private String Cantidad;
+    @Column(name = "Causas")
+    private String Causas;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_producto")
+    private tbProducto producto;
+
+    private Set<tbParametro> parametros;
+    private Set<tbParametroTipo> parametrosTipo;
+
+    public tbTipo() {
+    }
+
+    public tbTipo(Long id_tipo, String Codigo_tipo, String Nombre_tipo, int id_producto, String Cantidad, String Causas, tbProducto producto) {
         this.id_tipo = id_tipo;
         this.Codigo_tipo = Codigo_tipo;
         this.Nombre_tipo = Nombre_tipo;
         this.id_producto = id_producto;
         this.Cantidad = Cantidad;
         this.Causas = Causas;
+        this.producto = producto;
     }
 
     /**
@@ -112,10 +143,23 @@ public class tbTipo implements Serializable{
         this.Causas = Causas;
     }
 
+    /**
+     * @return the producto
+     */
+    public tbProducto getProducto() {
+        return producto;
+    }
+
+    /**
+     * @param producto the producto to set
+     */
+    public void setProducto(tbProducto producto) {
+        this.producto = producto;
+    }
+
     @Override
     public String toString() {
-        return "tbTipo{" + "id_tipo=" + id_tipo + ", Codigo_tipo=" + Codigo_tipo + ", Nombre_tipo=" + Nombre_tipo + ", id_producto=" + id_producto + ", Cantidad=" + Cantidad + ", Causas=" + Causas + '}';
+        return "tbTipo{" + "id_tipo=" + id_tipo + ", Codigo_tipo=" + Codigo_tipo + ", Nombre_tipo=" + Nombre_tipo + ", id_producto=" + id_producto + ", Cantidad=" + Cantidad + ", Causas=" + Causas + ", producto=" + producto + '}';
     }
-      
-      
+
 }

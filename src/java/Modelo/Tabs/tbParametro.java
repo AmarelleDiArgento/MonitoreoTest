@@ -6,17 +6,34 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
-public class tbParametro implements Serializable{
-    
+@Entity
+@Table(name = "Parametros")
+public class tbParametro implements Serializable {
+
+    @Id
+    @Column(name = "id_param")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_parametro;
+    @Column(name = "Codigo_param")
     private String codigo_parametro;
+    @Column(name = "Nombre_param")
     private String nombre_parametro;
+    @Column(name = "Tipo_Dato")
     private String tipo_dato;
+
+    public tbParametro() {
+    }
 
     public tbParametro(Long id_parametro, String codigo_parametro, String nombre_parametro, String tipo_dato) {
         this.id_parametro = id_parametro;
@@ -61,6 +78,5 @@ public class tbParametro implements Serializable{
     public String toString() {
         return "tbParametro{" + "id_parametro=" + id_parametro + ", codigo_parametro=" + codigo_parametro + ", nombre_parametro=" + nombre_parametro + ", tipo_dato=" + tipo_dato + '}';
     }
-    
-    
+
 }

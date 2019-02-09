@@ -6,16 +6,32 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author almoreno
  */
+@Entity
+@Table(name = "PuntosCorte")
 public class tbPuntoCorte implements Serializable {
 
+    @Id
+    @Column(name = "id_pcorte")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_pCorte;
+    @Column(name = "Codigo_pcorte")
     private String codigo_pCorte;
+    @Column(name = "nombre_pcorte")
     private String nombre_pCorte;
+
+    public tbPuntoCorte() {
+    }
 
     public tbPuntoCorte(Long id_pCorte, String codigo_pCorte, String nombre_pCorte) {
         this.id_pCorte = id_pCorte;
