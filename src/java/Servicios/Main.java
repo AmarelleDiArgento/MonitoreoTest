@@ -6,8 +6,11 @@
 package Servicios;
 
 import Modelo.Tabs.tbCausa;
+import Modelo.Tabs.tbEncabezado;
 import Modelo.Tabs.tbParametro;
+import Modelo.Tabs.tbParametroTipo;
 import Modelo.Tabs.tbProducto;
+import Modelo.Tabs.tbTipo;
 import Modelo.Tabs.tbVariedad;
 import java.util.List;
 
@@ -22,10 +25,11 @@ public class Main {
      */
     public static void main(String[] args) {
         SessionMonitoreo con = new SessionMonitoreo();
-        List<tbProducto> productos = con.getSession().createQuery("from tbProducto").list();
-        System.out.println("Resutados: " + productos.size());
-        for (tbProducto c : productos) {
+        List<tbEncabezado> tipos = con.getSession().createQuery("from tbEncabezado").list();
+        System.out.println("Resutados: " + tipos.size());
+        for (tbEncabezado c : tipos) {
             System.out.println(c.toString());
+
         }
         // TODO code application logic here
     }

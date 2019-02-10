@@ -6,6 +6,7 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +34,9 @@ public class tbVariedad implements Serializable {
     private String codigo_variedad;
     @Column(name = "Nombre")
     private String nombre_variedad;
+
+    @OneToMany(mappedBy = "variedad")
+    private Set<tbEncabezado> encabezado;
 
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_producto")

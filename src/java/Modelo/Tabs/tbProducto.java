@@ -7,7 +7,6 @@ package Modelo.Tabs;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,13 +35,17 @@ public class tbProducto implements Serializable {
     @OneToMany(mappedBy = "producto")
     private Set<tbVariedad> variedades;
 
+    @OneToMany(mappedBy = "producto")
+    private Set<tbTipo> tipo;
+
     public tbProducto() {
     }
 
-    public tbProducto(Long id_producto, String codigo_producto, String nombre_producto) {
-        this.id_producto = id_producto;
+    public tbProducto(String codigo_producto, String nombre_producto, Set<tbVariedad> variedades, Set<tbTipo> tipo) {
         this.codigo_producto = codigo_producto;
         this.nombre_producto = nombre_producto;
+        this.variedades = variedades;
+        this.tipo = tipo;
     }
 
     /**
@@ -85,6 +88,34 @@ public class tbProducto implements Serializable {
      */
     public void setNombre_producto(String nombre_producto) {
         this.nombre_producto = nombre_producto;
+    }
+
+    /**
+     * @return the variedades
+     */
+    public Set<tbVariedad> getVariedades() {
+        return variedades;
+    }
+
+    /**
+     * @param variedades the variedades to set
+     */
+    public void setVariedades(Set<tbVariedad> variedades) {
+        this.variedades = variedades;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Set<tbTipo> getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(Set<tbTipo> tipo) {
+        this.tipo = tipo;
     }
 
     @Override

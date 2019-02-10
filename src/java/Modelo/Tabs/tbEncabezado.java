@@ -29,16 +29,26 @@ public class tbEncabezado implements Serializable {
     @Column(name = "Id_encabezado")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id_encabezado;
-    @Column(name = "id_tipo")
-    private Long id_tipo;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_tipo")
+    private tbTipo tipo;
+
     @Column(name = "fecha")
     private String fecha;
-    @Column(name = "id_monitor")
-    private Long id_monitor;
-    @Column(name = "id_posco")
-    private Long id_posco;
-    @Column(name = "id_variedad")
-    private Long id_variedad;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_monitor")
+    private tbMonitor monitor;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_posco")
+    private tbPostcosecha postcosecha;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id_variedad")
+    private tbVariedad variedad;
+
     @Column(name = "Bloque")
     private String Bloque;
     @Column(name = "Cama")
@@ -47,8 +57,11 @@ public class tbEncabezado implements Serializable {
     private int Linea;
     @Column(name = "Cantidad_R")
     private int Cantidad_R;
-    @Column(name = "punto_corte")
-    private int punto_corte;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "punto_corte")
+    private tbPuntoCorte ptoCorte;
+
     @Column(name = "Plantas")
     private int Plantas;
     @Column(name = "Luz")
@@ -76,38 +89,21 @@ public class tbEncabezado implements Serializable {
     @Column(name = "C_Hormona5")
     private int C_Hormona5;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "id_tipo")
-    private tbTipo tipo;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "id_monitor")
-    private tbMonitor monitor;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "id_posco")
-    private tbPostcosecha postcosecha;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "id_variedad")
-    private tbVariedad variedad;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "punto_corte")
-    private tbPuntoCorte ptoCorte;
-
     public tbEncabezado() {
     }
 
-    public tbEncabezado(String Id_terminal, Long Id_encabezado, Long id_tipo, String fecha, Long id_monitor, Long id_posco, Long id_variedad, String Bloque, int Cama, int Linea, int Cantidad_R, int punto_corte, int Plantas, int Luz, int D_Raiz, String F_Hormona1, int C_Hormona1, String F_Hormona2, int C_Hormona2, String F_Hormona3, int C_Hormona3, String F_Hormona4, int C_Hormona4, String F_Hormona5, int C_Hormona5, tbTipo tipo, tbMonitor monitor, tbPostcosecha postcosecha, tbVariedad variedad, tbPuntoCorte ptoCorte) {
-        this.Id_terminal = Id_terminal;
+    public tbEncabezado(Long Id_encabezado, tbTipo tipo, String fecha, tbMonitor monitor, tbPostcosecha postcosecha, tbVariedad variedad, String Bloque, int Cama, int Linea, int Cantidad_R, tbPuntoCorte ptoCorte, int Plantas, int Luz, int D_Raiz, String F_Hormona1, int C_Hormona1, String F_Hormona2, int C_Hormona2, String F_Hormona3, int C_Hormona3, String F_Hormona4, int C_Hormona4, String F_Hormona5, int C_Hormona5) {
         this.Id_encabezado = Id_encabezado;
-        this.id_tipo = id_tipo;
+        this.tipo = tipo;
         this.fecha = fecha;
-        this.id_monitor = id_monitor;
-        this.id_posco = id_posco;
-        this.id_variedad = id_variedad;
+        this.monitor = monitor;
+        this.postcosecha = postcosecha;
+        this.variedad = variedad;
         this.Bloque = Bloque;
         this.Cama = Cama;
         this.Linea = Linea;
         this.Cantidad_R = Cantidad_R;
-        this.punto_corte = punto_corte;
+        this.ptoCorte = ptoCorte;
         this.Plantas = Plantas;
         this.Luz = Luz;
         this.D_Raiz = D_Raiz;
@@ -121,11 +117,6 @@ public class tbEncabezado implements Serializable {
         this.C_Hormona4 = C_Hormona4;
         this.F_Hormona5 = F_Hormona5;
         this.C_Hormona5 = C_Hormona5;
-        this.tipo = tipo;
-        this.monitor = monitor;
-        this.postcosecha = postcosecha;
-        this.variedad = variedad;
-        this.ptoCorte = ptoCorte;
     }
 
     /**
@@ -157,17 +148,17 @@ public class tbEncabezado implements Serializable {
     }
 
     /**
-     * @return the id_tipo
+     * @return the tipo
      */
-    public Long getId_tipo() {
-        return id_tipo;
+    public tbTipo getTipo() {
+        return tipo;
     }
 
     /**
-     * @param id_tipo the id_tipo to set
+     * @param tipo the tipo to set
      */
-    public void setId_tipo(Long id_tipo) {
-        this.id_tipo = id_tipo;
+    public void setTipo(tbTipo tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -185,45 +176,45 @@ public class tbEncabezado implements Serializable {
     }
 
     /**
-     * @return the id_monitor
+     * @return the monitor
      */
-    public Long getId_monitor() {
-        return id_monitor;
+    public tbMonitor getMonitor() {
+        return monitor;
     }
 
     /**
-     * @param id_monitor the id_monitor to set
+     * @param monitor the monitor to set
      */
-    public void setId_monitor(Long id_monitor) {
-        this.id_monitor = id_monitor;
+    public void setMonitor(tbMonitor monitor) {
+        this.monitor = monitor;
     }
 
     /**
-     * @return the id_posco
+     * @return the postcosecha
      */
-    public Long getId_posco() {
-        return id_posco;
+    public tbPostcosecha getPostcosecha() {
+        return postcosecha;
     }
 
     /**
-     * @param id_posco the id_posco to set
+     * @param postcosecha the postcosecha to set
      */
-    public void setId_posco(Long id_posco) {
-        this.id_posco = id_posco;
+    public void setPostcosecha(tbPostcosecha postcosecha) {
+        this.postcosecha = postcosecha;
     }
 
     /**
-     * @return the id_variedad
+     * @return the variedad
      */
-    public Long getId_variedad() {
-        return id_variedad;
+    public tbVariedad getVariedad() {
+        return variedad;
     }
 
     /**
-     * @param id_variedad the id_variedad to set
+     * @param variedad the variedad to set
      */
-    public void setId_variedad(Long id_variedad) {
-        this.id_variedad = id_variedad;
+    public void setVariedad(tbVariedad variedad) {
+        this.variedad = variedad;
     }
 
     /**
@@ -283,17 +274,17 @@ public class tbEncabezado implements Serializable {
     }
 
     /**
-     * @return the punto_corte
+     * @return the ptoCorte
      */
-    public int getPunto_corte() {
-        return punto_corte;
+    public tbPuntoCorte getPtoCorte() {
+        return ptoCorte;
     }
 
     /**
-     * @param punto_corte the punto_corte to set
+     * @param ptoCorte the ptoCorte to set
      */
-    public void setPunto_corte(int punto_corte) {
-        this.punto_corte = punto_corte;
+    public void setPtoCorte(tbPuntoCorte ptoCorte) {
+        this.ptoCorte = ptoCorte;
     }
 
     /**
@@ -478,79 +469,9 @@ public class tbEncabezado implements Serializable {
         this.C_Hormona5 = C_Hormona5;
     }
 
-    /**
-     * @return the tipo
-     */
-    public tbTipo getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(tbTipo tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * @return the monitor
-     */
-    public tbMonitor getMonitor() {
-        return monitor;
-    }
-
-    /**
-     * @param monitor the monitor to set
-     */
-    public void setMonitor(tbMonitor monitor) {
-        this.monitor = monitor;
-    }
-
-    /**
-     * @return the postcosecha
-     */
-    public tbPostcosecha getPostcosecha() {
-        return postcosecha;
-    }
-
-    /**
-     * @param postcosecha the postcosecha to set
-     */
-    public void setPostcosecha(tbPostcosecha postcosecha) {
-        this.postcosecha = postcosecha;
-    }
-
-    /**
-     * @return the variedad
-     */
-    public tbVariedad getVariedad() {
-        return variedad;
-    }
-
-    /**
-     * @param variedad the variedad to set
-     */
-    public void setVariedad(tbVariedad variedad) {
-        this.variedad = variedad;
-    }
-
-    /**
-     * @return the ptoCorte
-     */
-    public tbPuntoCorte getPtoCorte() {
-        return ptoCorte;
-    }
-
-    /**
-     * @param ptoCorte the ptoCorte to set
-     */
-    public void setPtoCorte(tbPuntoCorte ptoCorte) {
-        this.ptoCorte = ptoCorte;
-    }
-
     @Override
     public String toString() {
-        return "tbEncabezado{" + "Id_terminal=" + Id_terminal + ", Id_encabezado=" + Id_encabezado + ", id_tipo=" + id_tipo + ", fecha=" + fecha + ", id_monitor=" + id_monitor + ", id_posco=" + id_posco + ", id_variedad=" + id_variedad + ", Bloque=" + Bloque + ", Cama=" + Cama + ", Linea=" + Linea + ", Cantidad_R=" + Cantidad_R + ", punto_corte=" + punto_corte + ", Plantas=" + Plantas + ", Luz=" + Luz + ", D_Raiz=" + D_Raiz + ", F_Hormona1=" + F_Hormona1 + ", C_Hormona1=" + C_Hormona1 + ", F_Hormona2=" + F_Hormona2 + ", C_Hormona2=" + C_Hormona2 + ", F_Hormona3=" + F_Hormona3 + ", C_Hormona3=" + C_Hormona3 + ", F_Hormona4=" + F_Hormona4 + ", C_Hormona4=" + C_Hormona4 + ", F_Hormona5=" + F_Hormona5 + ", C_Hormona5=" + C_Hormona5 + ", tipo=" + tipo + ", monitor=" + monitor + ", postcosecha=" + postcosecha + ", variedad=" + variedad + ", ptoCorte=" + ptoCorte + '}';
+        return "tbEncabezado{" + "Id_terminal=" + Id_terminal + ", Id_encabezado=" + Id_encabezado + ", tipo=" + tipo + ", fecha=" + fecha + ", monitor=" + monitor + ", postcosecha=" + postcosecha + ", variedad=" + variedad + ", Bloque=" + Bloque + ", Cama=" + Cama + ", Linea=" + Linea + ", Cantidad_R=" + Cantidad_R + ", ptoCorte=" + ptoCorte + ", Plantas=" + Plantas + ", Luz=" + Luz + ", D_Raiz=" + D_Raiz + ", F_Hormona1=" + F_Hormona1 + ", C_Hormona1=" + C_Hormona1 + ", F_Hormona2=" + F_Hormona2 + ", C_Hormona2=" + C_Hormona2 + ", F_Hormona3=" + F_Hormona3 + ", C_Hormona3=" + C_Hormona3 + ", F_Hormona4=" + F_Hormona4 + ", C_Hormona4=" + C_Hormona4 + ", F_Hormona5=" + F_Hormona5 + ", C_Hormona5=" + C_Hormona5 + '}';
     }
 
 }

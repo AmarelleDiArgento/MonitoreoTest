@@ -8,6 +8,7 @@ package Modelo.Tabs;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,37 +28,25 @@ public class tbParametroTipo implements Serializable {
     @Column(name = "id_param_tipo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_param_tipo;
-    @Id
-    @Column(name = "id_tipo")
-    private Long id_tipo;
-    @Id
-    @Column(name = "id_param")
-    private int id_param;
+
     @Column(name = "Validar")
     private String validar;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_param")
     private tbParametro parametro;
-    @ManyToOne(optional = true)
+
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo")
     private tbTipo tipo;
 
     public tbParametroTipo() {
     }
 
-    public tbParametroTipo(Long id_param_tipo, Long id_tipo, int id_param, String validar, tbParametro parametro, tbTipo tipo) {
-        this.id_param_tipo = id_param_tipo;
-        this.id_tipo = id_tipo;
-        this.id_param = id_param;
+    public tbParametroTipo(String validar, tbParametro parametro, tbTipo tipo) {
         this.validar = validar;
         this.parametro = parametro;
         this.tipo = tipo;
-    }
-
-    @Override
-    public String toString() {
-        return "tbParametroTipo{" + "id_param_tipo=" + getId_param_tipo() + ", id_tipo=" + getId_tipo() + ", id_param=" + getId_param() + ", validar=" + getValidar() + ", parametro=" + getParametro() + ", tipo=" + getTipo() + '}';
     }
 
     /**
@@ -72,34 +61,6 @@ public class tbParametroTipo implements Serializable {
      */
     public void setId_param_tipo(Long id_param_tipo) {
         this.id_param_tipo = id_param_tipo;
-    }
-
-    /**
-     * @return the id_tipo
-     */
-    public Long getId_tipo() {
-        return id_tipo;
-    }
-
-    /**
-     * @param id_tipo the id_tipo to set
-     */
-    public void setId_tipo(Long id_tipo) {
-        this.id_tipo = id_tipo;
-    }
-
-    /**
-     * @return the id_param
-     */
-    public int getId_param() {
-        return id_param;
-    }
-
-    /**
-     * @param id_param the id_param to set
-     */
-    public void setId_param(int id_param) {
-        this.id_param = id_param;
     }
 
     /**
@@ -142,6 +103,11 @@ public class tbParametroTipo implements Serializable {
      */
     public void setTipo(tbTipo tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "tbParametroTipo{" + "id_param_tipo=" + id_param_tipo + ", validar=" + validar + ", parametro=" + parametro + ", tipo=" + tipo + '}';
     }
 
 }

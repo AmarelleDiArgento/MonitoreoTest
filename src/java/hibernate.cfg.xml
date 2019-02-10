@@ -49,15 +49,15 @@ Contributor(s):
         <property name="hibernate.connection.password">Inventarios2016*</property>
         <mapping class="Modelo.Tabs.tbCausa"/>
         <!-- <mapping class="Modelo.tbDetParametro"/>-->
-        <!-- <mapping class="Modelo.tbEncabezado"/>-->
+        <mapping class="Modelo.Tabs.tbEncabezado"/>
         <!-- <mapping class="Modelo.Tabs.tbFinca"/>-->
         <mapping class="Modelo.Tabs.tbMonitor"/>
         <mapping class="Modelo.Tabs.tbParametro"/>
-        <!-- <mapping class="Modelo.Tabs.tbParametroTipo"/>-->
+        <mapping class="Modelo.Tabs.tbParametroTipo"/>
         <mapping class="Modelo.Tabs.tbPostcosecha"/>
         <mapping class="Modelo.Tabs.tbProducto"/>
         <mapping class="Modelo.Tabs.tbPuntoCorte"/>
-        <!-- <mapping class="Modelo.Tabs.tbTipo"/>-->
+        <mapping class="Modelo.Tabs.tbTipo"/>
         <mapping class="Modelo.Tabs.tbVariedad"/>
 
     </session-factory>

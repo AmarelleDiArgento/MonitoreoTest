@@ -6,11 +6,13 @@
 package Modelo.Tabs;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,60 +32,13 @@ public class tbCausa implements Serializable {
     @Column(name = "Nombre_causa")
     private String nombre_causa;
 
-    public tbCausa() {
-    }
+    @OneToMany(mappedBy = "causa1")
+    private Set<tbDetParametro> detParametros1;
 
-    public tbCausa(Long id_causa, String codigo_causa, String nombre_causa) {
-        this.id_causa = id_causa;
-        this.codigo_causa = codigo_causa;
-        this.nombre_causa = nombre_causa;
-    }
+    @OneToMany(mappedBy = "causa2")
+    private Set<tbDetParametro> detParametros2;
 
-    /**
-     * @return the id_causa
-     */
-    public Long getId_causa() {
-        return id_causa;
-    }
-
-    /**
-     * @param id_causa the id_causa to set
-     */
-    public void setId_causa(Long id_causa) {
-        this.id_causa = id_causa;
-    }
-
-    /**
-     * @return the codigo_causa
-     */
-    public String getCodigo_causa() {
-        return codigo_causa;
-    }
-
-    /**
-     * @param codigo_causa the codigo_causa to set
-     */
-    public void setCodigo_causa(String codigo_causa) {
-        this.codigo_causa = codigo_causa;
-    }
-
-    /**
-     * @return the nombre_causa
-     */
-    public String getNombre_causa() {
-        return nombre_causa;
-    }
-
-    /**
-     * @param nombre_causa the nombre_causa to set
-     */
-    public void setNombre_causa(String nombre_causa) {
-        this.nombre_causa = nombre_causa;
-    }
-
-    @Override
-    public String toString() {
-        return "tbCausas{" + "id_causa=" + id_causa + ", codigo_causa=" + codigo_causa + ", nombre_causa=" + nombre_causa + '}';
-    }
+    @OneToMany(mappedBy = "causa3")
+    private Set<tbDetParametro> detParametros3;
 
 }
